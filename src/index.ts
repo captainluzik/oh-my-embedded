@@ -1,5 +1,5 @@
 import { existsSync } from "node:fs"
-import { join } from "node:path"
+import { dirname, join } from "node:path"
 import type { Plugin } from "@opencode-ai/plugin"
 import type { Config } from "@opencode-ai/sdk"
 import { createAutoDetectHook } from "./hooks/auto-detect"
@@ -40,8 +40,11 @@ function registerMcpServers(config: Config) {
   }
 
   const kicadEntry = join(MCP_DIR, "kicad-mcp-server", "dist", "index.js")
-  if (existsSync(kicadEntry) && pcbnewAvailable()) {
-    config.mcp["kicad-mcp"] = mcpLocal(["node", kicadEntry])
+  const kicadPythonPath = existsSync(kicadEntry) ? findKicadPythonPath() : undefined
+  if (kicadEntry && kicadPythonPath) {
+    config.mcp["kicad-mcp"] = mcpLocal(["node", kicadEntry], {
+      PYTHONPATH: kicadPythonPath,
+    })
   }
 
   const jlcMcpEntry = join(MCP_DIR, "jlc-cli", "packages", "mcp", "dist", "index.js")
@@ -71,16 +74,29 @@ function commandExistsSync(cmd: string): boolean {
   }
 }
 
-function pcbnewAvailable(): boolean {
+const KICAD_PYTHON_PATHS = [
+  "/Applications/KiCad/KiCad.app/Contents/Frameworks/Python.framework/Versions/3.9/lib/python3.9/site-packages",
+  "/usr/lib/python3/dist-packages",
+  "/usr/local/lib/python3/dist-packages",
+]
+
+function findKicadPythonPath(): string | undefined {
+  for (const p of KICAD_PYTHON_PATHS) {
+    if (existsSync(join(p, "pcbnew.py"))) return p
+  }
+
   try {
-    const result = Bun.spawnSync(["python3", "-c", "import pcbnew"], {
+    const result = Bun.spawnSync(["python3", "-c", "import pcbnew; print(pcbnew.__file__)"], {
       stdout: "pipe",
       stderr: "pipe",
     })
-    return result.exitCode === 0
-  } catch {
-    return false
-  }
+    if (result.exitCode === 0) {
+      const out = new TextDecoder().decode(result.stdout).trim()
+      if (out) return dirname(out)
+    }
+  } catch {}
+
+  return undefined
 }
 
 const OhMyEmbedded: Plugin = async (ctx) => {
