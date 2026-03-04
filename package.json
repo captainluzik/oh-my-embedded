@@ -1,0 +1,65 @@
+{
+  "name": "oh-my-embedded",
+  "version": "0.1.0",
+  "description": "Embedded systems engineering plugin for OpenCode. ESP32, FreeRTOS, RF design, PCB layout, component sourcing, power budgets — all from your terminal.",
+  "type": "module",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "bin": {
+    "oh-my-embedded": "dist/cli/install.js"
+  },
+  "files": [
+    "dist",
+    "skills",
+    "commands",
+    "agents",
+    "README.md",
+    "LICENSE"
+  ],
+  "scripts": {
+    "build": "bun build src/index.ts --outdir dist --target node --format esm && bun build src/cli/install.ts --outdir dist/cli --target node --format esm && cp -r skills dist/ && cp -r commands dist/ && cp -r agents dist/",
+    "dev": "bun run --watch src/index.ts",
+    "typecheck": "tsc --noEmit",
+    "lint": "biome check .",
+    "lint:fix": "biome check --write .",
+    "prepublishOnly": "bun run build"
+  },
+  "keywords": [
+    "opencode",
+    "opencode-plugin",
+    "embedded",
+    "esp32",
+    "esp-idf",
+    "freertos",
+    "firmware",
+    "electronics",
+    "pcb",
+    "kicad",
+    "platformio",
+    "rf-design",
+    "power-budget",
+    "impedance",
+    "iot",
+    "stm32",
+    "cortex-m",
+    "mcu",
+    "hardware"
+  ],
+  "author": "",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": ""
+  },
+  "dependencies": {
+    "@opencode-ai/plugin": "^1.1.53"
+  },
+  "devDependencies": {
+    "@biomejs/biome": "^1.9.0",
+    "@types/bun": "^1.2.0",
+    "typescript": "^5.7.0"
+  },
+  "engines": {
+    "node": ">=20.0.0"
+  }
+}
