@@ -158,7 +158,7 @@ GPIO12 = LED, GPIO34 = ADC_INPUT
 | 5 slash commands | ✅ Done |
 | Auto-detection (ESP-IDF, PlatformIO, Zephyr, STM32) | ✅ Done |
 | sdkconfig context injection | ✅ Done |
-| npm publish | 🔲 Planned |
+| npm publish | ✅ Done |
 | TUI installer with model selection | 🔲 Planned |
 | STM32CubeMX MCP integration | 🔲 Planned |
 | Zephyr RTOS skill | 🔲 Planned |
