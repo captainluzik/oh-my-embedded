@@ -1,6 +1,6 @@
 {
   "name": "oh-my-embedded",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Embedded systems engineering plugin for OpenCode. ESP32, FreeRTOS, RF design, PCB layout, component sourcing, power budgets — all from your terminal.",
   "type": "module",
   "main": "dist/index.js",
