@@ -1,0 +1,8 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Documentation
+    url: https://github.com/captainluzik/oh-my-embedded#readme
+    about: Read the documentation and feature list
+  - name: Contributing Guide
+    url: https://github.com/captainluzik/oh-my-embedded/blob/main/CONTRIBUTING.md
+    about: Learn how to contribute skills, tools, and MCP integrations

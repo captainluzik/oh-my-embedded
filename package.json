@@ -45,12 +45,15 @@
     "mcu",
     "hardware"
   ],
-  "author": "",
-  "license": "MIT",
+  "author": "captainluzik",
   "repository": {
     "type": "git",
-    "url": ""
+    "url": "https://github.com/captainluzik/oh-my-embedded.git"
   },
+  "bugs": {
+    "url": "https://github.com/captainluzik/oh-my-embedded/issues"
+  },
+  "homepage": "https://github.com/captainluzik/oh-my-embedded#readme",
   "dependencies": {
     "@opencode-ai/plugin": "^1.1.53"
   },

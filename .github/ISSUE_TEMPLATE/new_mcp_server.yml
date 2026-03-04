@@ -1,0 +1,83 @@
+name: New MCP Server Integration
+description: Propose a new MCP server integration for oh-my-embedded
+title: "[MCP Server]: "
+labels: ["new-mcp-server", "enhancement"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for proposing a new MCP server integration! Please fill out the form below to help us evaluate and integrate it.
+
+  - type: input
+    id: mcp_server_name
+    attributes:
+      label: MCP Server Name
+      description: What is the name of the MCP server?
+      placeholder: "e.g., claude-mcp-server-hardware"
+    validations:
+      required: true
+
+  - type: input
+    id: github_url
+    attributes:
+      label: GitHub URL
+      description: Link to the MCP server repository
+      placeholder: "https://github.com/..."
+    validations:
+      required: true
+
+  - type: textarea
+    id: what_it_does
+    attributes:
+      label: What It Does
+      description: What hardware/embedded domain does this MCP server cover?
+      placeholder: |
+        Describe what this MCP server does and which embedded/hardware domains it covers...
+    validations:
+      required: true
+
+  - type: textarea
+    id: how_to_install
+    attributes:
+      label: How to Install
+      description: How should users install and configure this MCP server?
+      placeholder: |
+        Provide installation instructions, configuration steps, and any dependencies...
+    validations:
+      required: true
+
+  - type: dropdown
+    id: skill_fit
+    attributes:
+      label: Which Skill Does It Fit?
+      description: Which oh-my-embedded skill would this integrate with?
+      options:
+        - embedded-engineer
+        - pcb-designer
+        - component-sourcer
+        - firmware-debugger
+        - circuit-simulator
+        - New Skill Needed
+    validations:
+      required: true
+
+  - type: input
+    id: maturity
+    attributes:
+      label: Maturity / GitHub Stars
+      description: Rough GitHub stars count or maturity level
+      placeholder: "e.g., 500+ stars, production-ready"
+
+  - type: checkboxes
+    id: tested
+    attributes:
+      label: Testing
+      options:
+        - label: I have tested this MCP server with oh-my-embedded
+
+  - type: textarea
+    id: additional_context
+    attributes:
+      label: Additional Context
+      description: Any other relevant information?
+      placeholder: "Links, examples, use cases, etc..."
